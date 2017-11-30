@@ -3,8 +3,8 @@ import urllib
 import urllib2
 import os
 
-username = raw_input("Enter Fannie Mae username: ")
-password = raw_input("Enter Fannie Mae password: ")
+username = raw_input("Enter Freddie Mac username: ")
+password = raw_input("Enter Freddie Mac password: ")
 beg_data = raw_input("Enter beginning quarter (i.e. 2014Q1): ")
 end_data = raw_input("Enter ending quarter (i.e. 2015Q2): ")
 
@@ -26,7 +26,7 @@ if beg_year < end_year or (beg_year == end_year and beg_quarter <= end_quarter):
     urllib2.install_opener(opener)
 
     # The action/ target from the form
-    authentication_url = 'https://loanperformancedata.fanniemae.com/lppub/loginForm.html'
+    authentication_url = 'https://freddiemac.embs.com/FLoan/secure/login.php?pagename=download2'
 
     # Input parameters we are going to send, keys in dictionary should match the 'name' fields found from source code
     payload = {
@@ -56,8 +56,8 @@ if beg_year < end_year or (beg_year == end_year and beg_quarter <= end_quarter):
             end = 4
 
         for quarter in range(start, end+1):
-            file_name = str(year) + 'Q' + str(quarter) + '.zip'
-            file_url = 'https://loanperformancedata.fanniemae.com/lppub/publish_aws?file=' + file_name
+            file_name = 'Q' + str(quarter) + str(year) + '.zip'
+            file_url = 'https://freddiemac.embs.com/FLoan/Data/historical_data1_' + file_name
 
             # Make the request and read the response
             print "Downloading", file_name
