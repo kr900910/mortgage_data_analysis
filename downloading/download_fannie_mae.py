@@ -3,15 +3,15 @@ import urllib
 import urllib2
 import os
 
-username = input("Enter Fannie Mae username:")
-password = input("Enter Fannie Mae password:")
-beg_data = input("Enter beginning quarter (i.e. 2014Q1):")
-end_data = input("Enter ending quarter (i.e. 2015Q2):")
+username = raw_input("Enter Fannie Mae username: ")
+password = raw_input("Enter Fannie Mae password: ")
+beg_data = raw_input("Enter beginning quarter (i.e. 2014Q1): ")
+end_data = raw_input("Enter ending quarter (i.e. 2015Q2): ")
 
-beg_year = beg_data[0:5]
-beg_quarter = beg_data[-1]
-end_year = end_data[0:5]
-end_quarter = end_data[-1]
+beg_year = int(beg_data[0:4])
+beg_quarter = int(beg_data[-1])
+end_year = int(end_data[0:4])
+end_quarter = int(end_data[-1])
 
 if beg_year < end_year or (beg_year == end_year and beg_quarter <= end_quarter):
 
@@ -44,7 +44,7 @@ if beg_year < end_year or (beg_year == end_year and beg_quarter <= end_quarter):
     for year in range(beg_year, end_year+1):
         if year == beg_year:
             start = beg_quarter
-            if year == end_year
+            if year == end_year:
                 end = end_quarter
             else:
                 end = 4
@@ -55,8 +55,8 @@ if beg_year < end_year or (beg_year == end_year and beg_quarter <= end_quarter):
             start = 1
             end = 4
 
-        for quarter range(start, end+1):
-            file_name = year + 'Q' + quarter + '.zip'
+        for quarter in range(start, end+1):
+            file_name = str(year) + 'Q' + str(quarter) + '.zip'
             file_url = 'https://loanperformancedata.fanniemae.com/lppub/publish_aws?file=' + file_name
 
             # Make the request and read the response
