@@ -41,7 +41,7 @@ if beg_year < end_year or (beg_year == end_year and beg_quarter <= end_quarter):
     req = urllib2.Request(authentication_url, data)
     resp = urllib2.urlopen(req)
 
-    for year range(beg_year, end_year+1):
+    for year in range(beg_year, end_year+1):
         if year == beg_year:
             start = beg_quarter
             if year == end_year
