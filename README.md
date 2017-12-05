@@ -3,7 +3,7 @@
 # Inital Setup
 1. Register for Fannie Mae: https://loanperformancedata.fanniemae.com/lppub/index.html#
 2. Register for Freddie Mac: https://freddiemac.embs.com/FLoan/Bin/loginrequest.php
-3. Pull W205/mortgage-data-analysis repository in EC2 instance.
+3. Pull mortgage-data-analysis repository in EC2 instance (git clone https://github.com/kr900910/mortgage-data-analysis.git).
 4. Create directories inside * W205/mortgage-data-analysis:
 - /data/fannie-mae/acq/
 - /data/fannie-mae/perf/
@@ -12,7 +12,7 @@
 - /temp_download
 
 # Download the data into the downloading folder
-5. Go to * W205/mortgage-data-analysis/downloading
+5. Go to * W205/mortgage-data-analysis/downloading, and pip install requests==2.5.3
 6. Type `python download_freddie_mac.py`. Enter credentials and quarters to download when prompted. This downloads zip files into the current folder for each quarter
 7. Type `python download_fannie_mae.py`. Enter credentials and quarters to download when prompted. This downloads zip files into the current folder for each quarter
 
