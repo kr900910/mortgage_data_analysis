@@ -16,23 +16,10 @@
 ######
 
 #unzip Fannie
-unzip $1Q$2.zip 
+unzip $1Q$2.zip ~/W205/mortgage-data-analysis/temp_data
 
 # unzip Freddie
-unzip *Q$2$1
-
-
-######
-## MOVE FILES TO STANDARDIZED FOLDER
-######
-
-#move unzipped FANNIE MAE files to standardized folder
-mv Performance_$1.txt ~/W205/mortgage-data-analysis/data/fannie-mae/perf/
-mv Acquisition_$1.txt ~/W205/mortgage-data-analysis/data/fannie-mea/acq/
-
-#move unzipped FREDDIE MAC files to standardized folder
-mv historical_data1_$1.txt ~/W205/mortgage-data-analysis/data/freddie-mac/perf/
-mv historical_data1_time_$1.txt ~/W205/mortgage-data-analysis/data/freddie-mac/acq/
+unzip *Q$2$1.zip ~/W205/mortgage-data-analysis/temp_data
 
 # deletes zip files after unzipping it
 rm *.zip
@@ -42,16 +29,16 @@ rm *.zip
 ######
 
 # FANNIE MAE performance data
-hdfs dfs -put ~/W205/mortgage-data-analysis/data/fannie-mae/perf/Performance_$1.txt /user/w205/mortgage-data-analysis/data/fannie-mae/perf
+hdfs dfs -put ~/W205/mortgage-data-analysis/temp_data/Performance_*.txt /user/w205/mortgage-data-analysis/data/fannie-mae/perf
 
 # FREDDIE MAC performance data
-hdfs dfs -put ~/W205/mortgage-data-analysis/data/freddie-mac/perf/historical_data1_$1.txt /user/w205/mortgage-data-analysis/data/freddie-mac/perf
+hdfs dfs -put ~/W205/mortgage-data-analysis/data/freddie-mac/perf/historical_data1_*.txt /user/w205/mortgage-data-analysis/data/freddie-mac/perf
 
 # FANNIE MAE acquisition data
-hdfs dfs -put ~/W205/mortgage-data-analysis/data/fannie-mae/acq/Acquisition_$1.txt /user/w205/mortgage-data-analysis/data/fannie-mae/acq
+hdfs dfs -put ~/W205/mortgage-data-analysis/data/fannie-mae/acq/Acquisition_*.txt /user/w205/mortgage-data-analysis/data/fannie-mae/acq
 
 # FREDDIE MAC acquisition data
-hdfs dfs -put ~/W205/mortgage-data-analysis/data/freddie-mac/acq/historical_data1_time_$1.txt /user/w205/mortgage-data-analysis/data/freddie-mac/acq
+hdfs dfs -put ~/W205/mortgage-data-analysis/data/freddie-mac/acq/historical_data1_time_*.txt /user/w205/mortgage-data-analysis/data/freddie-mac/acq
 
 # once loaded, wipe from folder
 
