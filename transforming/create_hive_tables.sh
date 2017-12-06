@@ -15,4 +15,5 @@ hive -f loan_acq_data.sql
 # This create Hive metadata for loan_perf_data which combines fannie_mae_perf and freddie_mae_perf
 hive -f loan_perf_data.sql
 
-
+# This merges the acquisitions and performance data into a single table
+hive -f acq_perf_data.sql
