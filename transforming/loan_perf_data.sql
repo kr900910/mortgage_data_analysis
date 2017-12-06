@@ -6,8 +6,6 @@ SELECT LOAN_ID,
 	LAST_UPB, 
 	LOAN_AGE, 
 	MONS_TO_LEGAL_MAT,
-	to_date(MATURITY_DATE) as MATURITY_DATE, 
-	MSA, 
 	DELQ_STATUS, 
 	MOD_FLAG,
 	ZERO_BAL_CODE, 
@@ -24,8 +22,6 @@ SELECT
 	Act_endg_upb as LAST_UPB, 
 	loan_age as LOAN_AGE, 
 	mths_remng as MONS_TO_LEGAL_MAT,
-	to_date(dt_matr) as MATURITY_DATE, 
-	cd_msa as MSA, 
 	delq_sts as DELQ_STATUS, 
 	flag_mod as MOD_FLAG,
 	CD_Zero_BAL as ZERO_BAL_CODE, 
@@ -34,5 +30,3 @@ SELECT
 	Net_Sale_Proceeds as NS_PROCS, 
 	"FREDDIE_MAC" as AGENCY
 from freddie_mac_perf fred_p
-left join freddie_mac_acq fred_a 
-	on fred_p.ID_loan = fred_a.id_loan

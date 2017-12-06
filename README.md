@@ -14,7 +14,7 @@
 # Move the data into HDFS directory
 8. Start Hadoop, postgres, and Hive in EC2 instance.
 10. If this is your first time, type `. create_hdfs_dir.sh`. This creates necessary HDFS folders.
-11. Type `. unzip_to_HDFS.sh`. This unzips the zipped files into mortgage-data-analysis/temp_download, removes the zipped files, loads unzipped files to HDFS, and removes the unzipped files.
+11. Type `. unzip_to_HDFS.sh`. This unzips the zipped files into mortgage-data-analysis/temp_download, removes the zipped files, loads unzipped files to HDFS, and removes the unzipped files. Note that this step can take 15-30 minutes depending on number of quarters being loaded.
 
 # Create Hive tables
 14. Go to mortgage-data-analysis/transforming and type `. create_hive_tables.sh`. This creates Hive metadata for base Fannie and Freddie data in hdfs and for the combined data sets.
