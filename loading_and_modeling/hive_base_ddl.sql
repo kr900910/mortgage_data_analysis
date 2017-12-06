@@ -29,7 +29,7 @@ CREATE EXTERNAL TABLE fannie_mae_acq
 )
 ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
 WITH SERDEPROPERTIES (
-"separatorChar" = ",",
+"separatorChar" = "|",
 "quoteChar" = '"',
 "escapeChar" = '\\'
 )
@@ -73,7 +73,7 @@ CREATE EXTERNAL TABLE fannie_mae_perf
 )
 ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
 WITH SERDEPROPERTIES (
-"separatorChar" = ",",
+"separatorChar" = "|",
 "quoteChar" = '"',
 "escapeChar" = '\\'
 )
@@ -113,7 +113,7 @@ CREATE EXTERNAL TABLE freddie_mac_acq
 )
 ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
 WITH SERDEPROPERTIES (
-"separatorChar" = ",",
+"separatorChar" = "|",
 "quoteChar" = '"',
 "escapeChar" = '\\'
 )
@@ -149,7 +149,7 @@ CREATE EXTERNAL TABLE freddie_mac_perf
 )
 ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
 WITH SERDEPROPERTIES (
-"separatorChar" = ",",
+"separatorChar" = "|",
 "quoteChar" = '"',
 "escapeChar" = '\\'
 )
