@@ -17,4 +17,4 @@
 11. Type `. unzip_to_HDFS.sh`. This unzips the zipped files into mortgage-data-analysis/temp_download, removes the zipped files, loads unzipped files to HDFS, and removes the unzipped files. Note that this step can take 15-30 minutes depending on number of quarters being loaded.
 
 # Create Hive tables
-14. Go to mortgage-data-analysis/transforming and type `. create_hive_tables.sh`. This creates Hive metadata for base Fannie and Freddie data in hdfs and for the combined data sets. Note that this script can take several hours to run, depending on how many quarters of data are there (for 15 quarters, acquisition data took 10 min, performance data took ~ 2 hours).
+12. Go to mortgage-data-analysis/transforming and type `. create_hive_tables.sh`. This creates Hive metadata for base Fannie and Freddie data in hdfs and for the combined data sets. Note that this script can take several hours to run, depending on how many quarters of data are there (for 15 quarters, acquisition data took 10 min, performance data took ~ 2 hours).
