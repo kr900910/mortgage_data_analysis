@@ -14,7 +14,6 @@
 # Move the data into HDFS directory
 8. Start Hadoop, postgres, Hive in EC2 instance. Type `su - w205`. This changes the user.
 10. If this is your first time, type `. create_hdfs_dir.sh`. This creates necessary HDFS folders.
-NOTE: FOR THIS STEP I HAD TO BE w205 USER OR ELSE I HAD PERMISSION ISSUES: Type `su - w205`. This changes the user
 11. Type `. unzip_to_HDFS.sh`. This unzips the zipped files into mortgage-data-analysis/temp_download, removes the zipped files, loads unzipped files to HDFS, and removes the unzipped files.
 
 # Create Hive tables
