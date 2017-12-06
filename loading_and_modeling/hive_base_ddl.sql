@@ -34,7 +34,7 @@ WITH SERDEPROPERTIES (
 "escapeChar" = '\\'
 )
 STORED AS TEXTFILE
-LOCATION '/user/w205/mortgage-data-analysis/data/fannie-mae/acq';
+LOCATION '/user/mortgage-data-analysis/data/fannie-mae/acq';
 
 DROP TABLE fannie_mae_perf;
 CREATE EXTERNAL TABLE fannie_mae_perf
@@ -78,7 +78,7 @@ WITH SERDEPROPERTIES (
 "escapeChar" = '\\'
 )
 STORED AS TEXTFILE
-LOCATION '/user/w205/mortgage-data-analysis/data/fannie-mae/perf';
+LOCATION '/user/mortgage-data-analysis/data/fannie-mae/perf';
 
 DROP TABLE freddie_mac_acq;
 CREATE EXTERNAL TABLE freddie_mac_acq
@@ -118,7 +118,7 @@ WITH SERDEPROPERTIES (
 "escapeChar" = '\\'
 )
 STORED AS TEXTFILE
-LOCATION '/user/w205/mortgage-data-analysis/data/freddie-mac/acq';
+LOCATION '/user/mortgage-data-analysis/data/freddie-mac/acq';
 
 DROP TABLE freddie_mac_perf;
 CREATE EXTERNAL TABLE freddie_mac_perf
@@ -154,5 +154,4 @@ WITH SERDEPROPERTIES (
 "escapeChar" = '\\'
 )
 STORED AS TEXTFILE
-LOCATION '/user/w205/mortgage-data-analysis/data/freddie-mac/perf';
-
+LOCATION '/user/mortgage-data-analysis/data/freddie-mac/perf';
