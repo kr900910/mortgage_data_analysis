@@ -24,6 +24,20 @@ unzip *Q$2$1.zip ~/W205/mortgage-data-analysis/temp_data
 # deletes zip files after unzipping it
 rm *.zip
 
+# make permissions open for all users
+chmod +777 *.txt 
+
+
+######
+## change user to w205
+######
+
+su - w205
+
+# move to temp_data directory
+cd /data/mortgage-data-analysis/temp_data
+
+
 ######
 ## load Fannie data to HDFS
 ######
@@ -40,6 +54,8 @@ hdfs dfs -put ~/W205/mortgage-data-analysis/data/fannie-mae/acq/Acquisition_*.tx
 # FREDDIE MAC acquisition data
 hdfs dfs -put ~/W205/mortgage-data-analysis/data/freddie-mac/acq/historical_data1_time_*.txt /user/w205/mortgage-data-analysis/data/freddie-mac/acq
 
+echo "HDFS data loading complete!"
+
 # once loaded, wipe from folder
 
 rm Performance_$1Q$2.txt
@@ -47,3 +63,6 @@ rm Acquisition_$1Q$2.txt
 
 rm *_data1_Q$2$1.txt
 rm *_data1_time_Q$2$1.txt
+
+echo "txt files deleted from temp_data directory"
+
