@@ -17,3 +17,6 @@ hive -f loan_perf_data.sql
 
 # This merges the acquisitions and performance data into a single table
 hive -f acq_perf_data.sql
+
+# This creates the aggregated tables for information provided in dashboards
+hive -f agg_data.sql
