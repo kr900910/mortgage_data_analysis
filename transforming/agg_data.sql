@@ -1,4 +1,4 @@
-# first, create aggregations for acquisitions data at the state and 3-digit zip level
+-- first, create aggregations for acquisitions data at the state and 3-digit zip level
 
 DROP TABLE acq_state_agg_data;
 CREATE TABLE acq_state_agg_data AS
@@ -41,8 +41,8 @@ from loan_acq_data
 group by ZIP_3, FRST_DTE_MTH, FRST_DTE_YR;
 
 
-# next, create aggregations for performance data related to at the state and 3-digit zip level
-# counted as delinquent if over 30 days past due
+-- next, create aggregations for performance data related to at the state and 3-digit zip level
+-- counted as delinquent if over 30 days past due
 DROP TABLE perf_state_agg_data;
 CREATE TABLE perf_state_agg_data AS
 SELECT 
