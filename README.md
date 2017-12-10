@@ -18,3 +18,7 @@
 
 # Create Hive tables
 12. Go to mortgage-data-analysis/transforming and type `. create_hive_tables.sh`. This creates Hive metadata for base Fannie and Freddie data in hdfs and for the combined data sets. Note that this script can take several hours to run, depending on how many quarters of data are there (for 15 quarters, acquisition data took 10 min, performance data took ~ 2 hours).
+
+# Use Tableau to visualize data
+12. Once Hive tables are created, start HiveServer2 by typing `hive --service hiveserver2 &`.
+13. Set up an ODBC connection with the server in Tableau and visualize data as necessary. A sample Tableau workbook along with the CSV file extracted from one of Hive tables are available in mortgage-data-analysis/serving folder.
