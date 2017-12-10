@@ -1,8 +1,9 @@
-hdfs dfs -mkdir /user/w205/mortgage-data-analysis
-hdfs dfs -mkdir /user/w205/mortgage-data-analysis/data
-hdfs dfs -mkdir /user/w205/mortgage-data-analysis/data/fannie-mae
-hdfs dfs -mkdir /user/w205/mortgage-data-analysis/data/freddie-mac
-hdfs dfs -mkdir /user/w205/mortgage-data-analysis/data/fannie-mae/acq
-hdfs dfs -mkdir /user/w205/mortgage-data-analysis/data/fannie-mae/perf
-hdfs dfs -mkdir /user/w205/mortgage-data-analysis/data/freddie-mac/acq
-hdfs dfs -mkdir /user/w205/mortgage-data-analysis/data/freddie-mac/perf
+sudo -u hdfs hdfs dfs -mkdir /user/mortgage-data-analysis
+sudo -u hdfs hdfs dfs -chown root /user/mortgage-data-analysis
+sudo -u hdfs hdfs dfs -mkdir /user/mortgage-data-analysis/data
+sudo -u hdfs hdfs dfs -mkdir /user/mortgage-data-analysis/data/fannie-mae
+sudo -u hdfs hdfs dfs -mkdir /user/mortgage-data-analysis/data/freddie-mac
+sudo -u hdfs hdfs dfs -mkdir /user/mortgage-data-analysis/data/fannie-mae/acq
+sudo -u hdfs hdfs dfs -mkdir /user/mortgage-data-analysis/data/fannie-mae/perf
+sudo -u hdfs hdfs dfs -mkdir /user/mortgage-data-analysis/data/freddie-mac/acq
+sudo -u hdfs hdfs dfs -mkdir /user/mortgage-data-analysis/data/freddie-mac/perf

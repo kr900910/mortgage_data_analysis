@@ -1,28 +1,20 @@
 ## Mortgage Data Analysis
 
-1. Download the latest quarter data from Fannie Mae and Freddie Mac.
-2. Open EC2 instance, and run all necessary items (Hadoop, postgres, Hive).
-3. Transfer the downloaded files to EC2 instance using the below command. Make sure you change PEM file name/location, local directory which has data, 
-EC2 machine name, and target directory in EC2. 
-```
-scp -i foo.pem ~/data/Performance_2016Q3.txt root@ec2-54-211-52-45.compute-1.amazonaws.com:~/data/
-```
+# Inital Setup
+1. Register for Fannie Mae: https://loanperformancedata.fanniemae.com/lppub/index.html#.
+2. Register for Freddie Mac: https://freddiemac.embs.com/FLoan/Bin/loginrequest.php.
+3. Pull mortgage-data-analysis repository in EC2 instance (`git clone https://github.com/kr900910/mortgage-data-analysis.git`).
+4. Create temp_download directory inside mortgage-data-analysis (`mkdir temp_download`).
 
-4. Pull W205/mortgage-data-analysis repository in EC2 instance.
+# Download the data
+5. Go to mortgage-data-analysis/loading_and_modeling, and `pip install requests==2.5.3`.
+6. Type `python download_freddie_mac.py`. Enter credentials and quarters to download when prompted. This downloads zip files into the current folder for each quarter.
+7. Type `python download_fannie_mae.py`. Enter credentials and quarters to download when prompted. This downloads zip files into the current folder for each quarter.
 
-5. Store transferred data as below:
-* W205/mortgage-data-analysis/data/fannie-mae/acq/Acquisition_2016Q3.txt
-* W205/mortgage-data-analysis/data/fannie-mae/perf/Performance_2016Q3.txt
-* W205/mortgage-data-analysis/data/freddie-mac/acq/historical_data1_Q32016.txt
-* W205/mortgage-data-analysis/data/freddie-mac/perf/historical_data1_time_Q32016.txt
+# Move the data into HDFS directory
+8. Start Hadoop, postgres, and Hive in EC2 instance.
+10. If this is your first time, type `. create_hdfs_dir.sh`. This creates necessary HDFS folders.
+11. Type `. unzip_to_HDFS.sh`. This unzips the zipped files into mortgage-data-analysis/temp_download, removes the zipped files, loads unzipped files to HDFS, and removes the unzipped files. Note that this step can take 15-30 minutes depending on number of quarters being loaded.
 
-6. Go to loading_and_modeling folder, and type `. create_hdfs_dir.sh`. This creates necessary HDFS folders.
-
-7. Type `. load_data_lake.sh`. This loads data into HDFS.
-
-8. Type `hive -f hive_base_ddl.sql`. This create Hive metadata for fannie_mae_acq, fannie_mae_perf, freddie_mac_acq, and freddie_mac_perf.
-
-9. Go to transforming folder, and type `hive -f loan_acq_data.sql`. This creates Hive metadata for loan_acq_data which
-combines fannie_mae_acq and freddie_mac_acq.
-
-10. Type `hive -f loan_perf_data.sql`. This creates Hive metadata for loan_perf_data which combines fannie_mae_perf and freddie_mac_perf.
+# Create Hive tables
+12. Go to mortgage-data-analysis/transforming and type `. create_hive_tables.sh`. This creates Hive metadata for base Fannie and Freddie data in hdfs and for the combined data sets. Note that this script can take several hours to run, depending on how many quarters of data are there (for 15 quarters, acquisition data took 10 min, performance data took ~ 2 hours).
