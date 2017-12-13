@@ -84,3 +84,34 @@ SELECT
 	sum(LAST_UPB*(case when (DELQ_STATUS=0 OR DELQ_STATUS is null) THEN 0 ELSE 1 END))/sum(case when DELQ_STATUS is null THEN 0 ELSE LAST_UPB END) AS WUPB_AVG_DELQ_RT
 from acq_perf_data
 group by ZIP_3, FRST_DTE_MTH, FRST_DTE_YR, RPT_PRD_MTH, RPT_PRD_YR;
+
+--finally, create a table with origination metrics in various buckets, along with performance metrics for most recent month of data downloaded
+DROP TABLE perf_acq_3zip_agg_data;
+CREATE TABLE perf_acq_3zip_agg_data AS
+SELECT 
+	ZIP_3,
+	FRST_DTE_YR,
+	count(*) AS NUM_LOANS,
+	sum(ORIG_AMT) AS SUM_ORIG_AMT,
+	sum(LAST_UPB) AS SUM_UPB_AMT,
+	sum(OLTV) AS SUM_OLTV,
+	sum(case when OLTV is null THEN 0 ELSE ORIG_AMT END) AS OLTV_ORIG_AMT,
+	sum(case when OLTV is null THEN 0 ELSE 1 END) AS OLTV_NUM_LOANS,
+	sum(DTI) AS SUM_DTI,
+	sum(case when DTI is null THEN 0 ELSE ORIG_AMT END) AS DTI_ORIG_AMT,
+	sum(case when DTI is null THEN 0 ELSE 1 END) AS DTI_NUM_LOANS,
+	sum(CSCORE_B) AS SUM_CSCORE_B,
+	sum(case when CSCORE_B is null THEN 0 ELSE ORIG_AMT END) AS CSCORE_B_ORIG_AMT,
+	sum(case when CSCORE_B is null THEN 0 ELSE 1 END) AS CSCORE_B_NUM_LOANS,
+	sum(ORIG_RT) AS SUM_ORIG_RT,
+	sum(case when ORIG_RT is null THEN 0 ELSE ORIG_AMT END) AS ORIG_RT_ORIG_AMT,
+	sum(case when ORIG_RT is null THEN 0 ELSE 1 END) AS ORIG_RT_NUM_LOANS,
+	sum(LAST_RT) AS SUM_LAST_RT,
+	sum(case when LAST_RT is null THEN 0 ELSE ORIG_AMT END) AS LAST_RT_ORIG_AMT,
+	sum(case when LAST_RT is null THEN 0 ELSE 1 END) AS LAST_RT_NUM_LOANS,
+	sum(case when (DELQ_STATUS=0 OR DELQ_STATUS is null) THEN 0 ELSE 1 END) AS DELQ_COUNT,
+	sum(case when DELQ_STATUS is null THEN 0 ELSE ORIG_AMT END) AS DELQ_ORIG_AMT,
+	sum(case when DELQ_STATUS is null THEN 0 ELSE 1 END) AS DELQ_NUM_LOANS
+from acq_perf_data
+where RPT_PRD_YR=2016 AND RPT_PRD_MTH=8
+group by ZIP_3, FRST_DTE_YR;
